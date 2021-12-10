@@ -1,0 +1,17 @@
+{
+    "name": "tinysfml",
+    "version-string": "0.1.0",
+    "dependencies": [
+        "sfml",
+        "imgui-sfml",
+        "imguizmo",
+        "spdlog",
+        "catch2",
+        "glad",
+        "box2d",
+        "glm",
+        "lua",
+        "entt",
+        "nlohmann-json"
+    ]
+}
