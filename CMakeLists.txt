@@ -106,7 +106,7 @@ target_link_libraries(TinySFML PRIVATE box2d::box2d
 if (MSVC)
     
 elseif(UNIX AND NOT APPLE)
-  target_link_libraries(TinySFML PRIVATE X11 X11-xcb Xext xcb xkbcommon)
+  target_link_libraries(TinySFML PRIVATE X11 X11-xcb Xext xcb xkbcommon GL udev Xrandr)
 endif()
 
 add_custom_command(TARGET TinySFML POST_BUILD 
