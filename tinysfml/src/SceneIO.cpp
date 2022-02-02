@@ -59,6 +59,7 @@ namespace tinySFML
         else
         {
             TINYSFML_FATAL("data load fail at " + file);
+            return -1;
         }
         return j;
     }
@@ -98,7 +99,7 @@ namespace tinySFML
         j[name.c_str()]["position"]["x"] = x;
         j[name.c_str()]["position"]["y"] = y;
         j[name.c_str()]["velocity"]["x"] = sx;
-        j[name.c_str()]["velocity"]["y"] = sx;
+        j[name.c_str()]["velocity"]["y"] = sy;
         j[name.c_str()]["color"]["r"] = r;
         j[name.c_str()]["color"]["g"] = g;
         j[name.c_str()]["color"]["b"] = b;
@@ -120,7 +121,7 @@ namespace tinySFML
 
         j[name.c_str()]["position"]["x"] = x;
         j[name.c_str()]["velocity"]["x"] = sx;
-        j[name.c_str()]["velocity"]["y"] = sx;
+        j[name.c_str()]["velocity"]["y"] = sy;
         j[name.c_str()]["color"]["r"] = r;
         j[name.c_str()]["color"]["g"] = g;
         j[name.c_str()]["color"]["b"] = b;

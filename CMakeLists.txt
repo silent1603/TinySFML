@@ -86,7 +86,7 @@ target_link_libraries(TinySFML PRIVATE box2d::box2d
 if (MSVC)
     
 elseif(UNIX AND NOT APPLE)
-  target_link_libraries(TinySFML Catch2::Catch2WithMain)
+  target_link_libraries(TinySFML PRIVATE Catch2::Catch2WithMain)
 endif()
 
 add_custom_command(TARGET TinySFML POST_BUILD 

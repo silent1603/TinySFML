@@ -19,8 +19,8 @@ namespace tinySFML
 
     private:
         T m_type;
-        sf::Vector2i m_pos(0, 0);
-        sf::Vector2u m_size(0, 0);
+        sf::Vector2i m_pos;
+        sf::Vector2u m_size;
         bool m_visible;
         sf::Color m_color{sf::Color::Black};
     };
