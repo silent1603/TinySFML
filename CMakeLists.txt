@@ -19,7 +19,7 @@ if(GIT_FOUND AND EXISTS "${PROJECT_SOURCE_DIR}/.git")
         endif()
     endif()
 endif()
- 
+
 if(NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/vcpkg")
     message(FATAL_ERROR "The submodules were not downloaded! GIT_SUBMODULE was turned off or failed. Please update submodules and try again.")
 endif()
@@ -82,7 +82,7 @@ source_group(TREE ${PROJECT_SOURCE_DIR} FILES ${PROJECT_CONFIGS})
 
 add_executable(TinySFML ${PROJECT_HEADERS} ${PROJECT_SOURCES} ${PROJECT_SHADERS} ${RESOURCE_PATH})
 
-set_property(TARGET TinySFML PROPERTY CXX_STANDARD 11)
+set_property(TARGET TinySFML PROPERTY CXX_STANDARD 17)
 
 
 
