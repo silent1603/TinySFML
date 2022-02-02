@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.13)
 
-set(CMAKE_TOOLCHAIN_FILE ${CMAKE_CURRENT_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake
-CACHE STRING "Vcpkg toolchain file")
+set(CMAKE_TOOLCHAIN_FILE ${CMAKE_CURRENT_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake CACHE STRING "Vcpkg toolchain file")
 
 project(TinySFML)
 
@@ -24,25 +23,6 @@ if(NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/vcpkg")
     message(FATAL_ERROR "The submodules were not downloaded! GIT_SUBMODULE was turned off or failed. Please update submodules and try again.")
 endif()
 
-if (MSVC)
-  if(NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/vcpkg/vcpkg.exe")
-  MESSAGE(STATUS "INSTALL VCPKG")
-  execute_process(COMMAND "./vcpkg/bootstrap-vcpkg.bat"
-  RESULT_VARIABLE CMD_ERROR
-  OUTPUT_FILE CMD_OUTPUT)
-  MESSAGE( STATUS "CMD_ERROR:" ${CMD_ERROR})
-  MESSAGE( STATUS "CMD_OUTPUT:" ${CMD_OUTPUT})
-  endif()
-elseif(UNIX)
-  if(NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/vcpkg/vcpkg")
-    MESSAGE(STATUS "INSTALL VCPKG")
-    execute_process(COMMAND "./vcpkg/bootstrap-vcpkg.sh"
-    RESULT_VARIABLE CMD_ERROR
-    OUTPUT_FILE CMD_OUTPUT)
-    MESSAGE( STATUS "CMD_ERROR:" ${CMD_ERROR})
-    MESSAGE( STATUS "CMD_OUTPUT:" ${CMD_OUTPUT})
-  endif()
-endif()
 
 set(RELEASE_PATH "${PROJECT_SOURCE_DIR}/release")
 set(DEBUG_PATH "${PROJECT_SOURCE_DIR}/debug")
@@ -90,7 +70,7 @@ target_include_directories(TinySFML PRIVATE ${LUA_INCLUDE_DIR})
 target_include_directories(TinySFML PRIVATE ${STB_INCLUDE_DIRS}) 
 
 target_link_libraries(TinySFML PRIVATE box2d::box2d 
-                                        PRIVATE Catch2::Catch2 Catch2::Catch2WithMain 
+                                        PRIVATE Catch2::Catch2 
                                         PRIVATE EnTT::EnTT 
                                         PRIVATE glad::glad
                                         PRIVATE imgui::imgui 
@@ -106,7 +86,7 @@ target_link_libraries(TinySFML PRIVATE box2d::box2d
 if (MSVC)
     
 elseif(UNIX AND NOT APPLE)
-  target_link_libraries(TinySFML PRIVATE X11 X11-xcb Xext xcb xkbcommon GL udev Xrandr)
+  target_link_libraries(TinySFML Catch2::Catch2WithMain)
 endif()
 
 add_custom_command(TARGET TinySFML POST_BUILD 
