@@ -57,5 +57,5 @@ jobs:
          shell: cmd
          run: |
           cd build
-          msbuild TinySDL.sln
+          msbuild TinySFML.sln
          
