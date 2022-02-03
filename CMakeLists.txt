@@ -30,16 +30,12 @@ set(DEBUG_PATH "${PROJECT_SOURCE_DIR}/debug")
 find_package(box2d CONFIG REQUIRED)
 find_package(Catch2 CONFIG REQUIRED)
 find_package(EnTT CONFIG REQUIRED)
-find_package(glad CONFIG REQUIRED)
-find_package(imgui CONFIG REQUIRED)
-find_package(imguizmo CONFIG REQUIRED)
+find_package(ImGui-SFML CONFIG REQUIRED)
 find_package(nlohmann_json CONFIG REQUIRED)
 find_package(spdlog CONFIG REQUIRED)
 find_package(Lua REQUIRED)
-find_package(glm CONFIG REQUIRED)
 find_package(SFML COMPONENTS system window graphics CONFIG REQUIRED)
-find_package(ImGui-SFML CONFIG REQUIRED)
-
+find_package(imgui CONFIG REQUIRED)
 
 set(PROJECT_PATH ${CMAKE_SOURCE_DIR}/tinysfml)
 set(SRC_PATH ${PROJECT_PATH}/src)
@@ -67,17 +63,13 @@ set_property(TARGET TinySFML PROPERTY CXX_STANDARD 17)
 
 
 target_include_directories(TinySFML PRIVATE ${LUA_INCLUDE_DIR})
-target_include_directories(TinySFML PRIVATE ${STB_INCLUDE_DIRS}) 
 
 target_link_libraries(TinySFML PRIVATE box2d::box2d 
                                         PRIVATE Catch2::Catch2 
                                         PRIVATE EnTT::EnTT 
-                                        PRIVATE glad::glad
-                                        PRIVATE imgui::imgui 
-                                        PRIVATE imguizmo::imguizmo 
                                         PRIVATE nlohmann_json nlohmann_json::nlohmann_json
                                         PRIVATE spdlog::spdlog spdlog::spdlog_header_only 
-                                        PRIVATE glm::glm 
+                                        PRIVATE imgui::imgui 
                                         PRIVATE ${LUA_LIBRARIES} 
                                         PRIVATE ImGui-SFML::ImGui-SFML 
                                         PRIVATE sfml-system sfml-network sfml-graphics sfml-window 
