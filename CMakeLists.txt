@@ -25,7 +25,6 @@ endif()
 
 
 set(RELEASE_PATH "${PROJECT_SOURCE_DIR}/release")
-set(DEBUG_PATH "${PROJECT_SOURCE_DIR}/debug")
 
 find_package(box2d CONFIG REQUIRED)
 find_package(Catch2 CONFIG REQUIRED)
@@ -65,7 +64,7 @@ set_property(TARGET TinySFML PROPERTY CXX_STANDARD 17)
 target_include_directories(TinySFML PRIVATE ${LUA_INCLUDE_DIR})
 
 target_link_libraries(TinySFML PRIVATE box2d::box2d 
-                                        PRIVATE Catch2::Catch2 
+PRIVATE Catch2::Catch2 
                                         PRIVATE EnTT::EnTT 
                                         PRIVATE nlohmann_json nlohmann_json::nlohmann_json
                                         PRIVATE spdlog::spdlog spdlog::spdlog_header_only 
@@ -73,11 +72,12 @@ target_link_libraries(TinySFML PRIVATE box2d::box2d
                                         PRIVATE ${LUA_LIBRARIES} 
                                         PRIVATE ImGui-SFML::ImGui-SFML 
                                         PRIVATE sfml-system sfml-network sfml-graphics sfml-window 
-)
-
+                                        )
+                                        
 if (MSVC)
-    
-elseif(UNIX AND NOT APPLE)
+   set_target_properties(TinySFML PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY ${RELEASE_PATH})
+                                        
+                                        elseif(UNIX AND NOT APPLE)
   target_link_libraries(TinySFML PRIVATE Catch2::Catch2WithMain)
 endif()
 
